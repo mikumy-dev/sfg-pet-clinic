@@ -1,6 +1,7 @@
 package guru.springframework.sfgpetclinic.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class OwnerController {
 
     @RequestMapping({"", "/index", "/index.html"})
-    public String listofOwners() {
+    public String listofOwners(Model model) {
         return "owners/index";
     }
 }
