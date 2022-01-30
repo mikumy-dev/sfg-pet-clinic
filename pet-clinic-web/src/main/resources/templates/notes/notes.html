@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes about Thymeleaf</title>
+    <style>
+        code {
+            font-family: Consolas,serif;
+            background-color: #ededed;
+        }
+        pre {
+            background-color: #ededed;
+            display: block;
+        }
+        table {
+            border-collapse:collapse;
+            width: 70%;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+        }
+        th {
+            width: 20%;
+        }
+
+
+    </style>
+</head>
+<body>
+<h1>Some notes about the template</h1>
+<ul>
+    <li><h4>Basic expressions</h4>
+        <ul>
+            <li>Variable Expressions: <code>${...}</code></li>
+            <li>Selection Variable Expressions: <code>*{...}</code></li>
+            <li>Message Expressions: <code>#{...}</code></li>
+            <li>Link URL Expressions: <code>@{...}</code></li>
+        </ul>
+    </li>
+    <li><h4>About index.html</h4>
+    <p><code>th:replace="~{fragments/layout :: layout (~{::body},'home')}"</code></p>
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <th scope="row"><code>th:replace</code></th>
+            <td>To include a fragment template into index page,
+                use <code>th:fragment="layout"</code> to define a fragment named "layout"</td>
+        </tr>
+        <tr>
+            <th scope="row"><code>~{ }</code></th>
+            <td>Don't know. Delete this and the <code>th:replace="fragments/layout :: layout (~{::body},'home')"</code>
+                still works well.</td>
+        </tr>
+        <tr>
+            <th scope="row"><code>fragments/layout</code></th>
+            <td>look at the path fragments/layout.html</td>
+        </tr>
+        <tr>
+            <th scope="row"><code>::</code></th>
+            <td><code>templatename::domselector</code>, like <code>&lt;div th:replace="footer :: copy"&gt;&lt;/div&gt;</code>,
+            replace the div with the "copy" fragment and the tag name is footer</td>
+        </tr>
+        <tr>
+            <th scope="row"><code>layout (~{::body},'home')</code></th>
+            <td><code>(~{::body},'home')</code>, the arguments of the fragment <code>layout</code>,
+                parameter 1: the body element of the index.html, parameter 2: the 'home' string.
+                <code>::body</code>, look at the body element in current page</td>
+        </tr>
+        </tbody>
+    </table>
+    </li>
+    <li>
+        <h4>About templates/fragments/layout.html</h4>
+        <ul>
+            <li><code>th:fragment="layout (template, menu)"</code>
+            <p>define a fragment call "layout" and input two parameters</p></li>
+            <li><p>fragment for navbar</p>
+                <p th:replace="~{fragments/layout-fragments :: navbar}"></p>
+                <p>define a fragment call <code>menuItem</code> with 5 arguments</p>
+                <p><code>__${expression}__</code>, preprocessing expression. And what is that preprocessing thing?
+                    It is an execution of the expressions done before the normal one, that allows the modification of
+                    the actual expression that will be eventually executed.</p>
+            </li>
+        </ul>
+    </li>
+</ul>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
