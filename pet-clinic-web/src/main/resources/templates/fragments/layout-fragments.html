@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragment Notes</title>
+</head>
+<body>
+<pre th:fragment="navbar"><code>
+&#x3C;li th:fragment=&#x22;menuItem (path,active,title,glyph,text)&#x22; class=&#x22;active&#x22; th:class=&#x22;${active==menu ? &#x27;active&#x27; : &#x27;&#x27;}&#x22;&#x3E;
+  &#x3C;a th:href=&#x22;@{__${path}__}&#x22; th:title=&#x22;${title}&#x22;&#x3E;
+    &#x3C;span th:class=&#x22;&#x27;glyphicon  glyphicon-&#x27;+${glyph}&#x22; class=&#x22;glyphicon glyphicon-home&#x22; aria-hidden=&#x22;true&#x22;&#x3E;&#x3C;/span&#x3E;
+    &#x3C;span th:text=&#x22;${text}&#x22;&#x3E;Template&#x3C;/span&#x3E;
+  &#x3C;/a&#x3E;
+&#x3C;/li&#x3E;
+
+&#x3C;li th:replace=&#x22;::menuItem (&#x27;/&#x27;,&#x27;home&#x27;,&#x27;home page&#x27;,&#x27;home&#x27;,&#x27;Home&#x27;)&#x22;&#x3E;
+  &#x3C;span class=&#x22;glyphicon glyphicon-home&#x22; aria-hidden=&#x22;true&#x22;&#x3E;&#x3C;/span&#x3E;
+  &#x3C;span&#x3E;Home&#x3C;/span&#x3E;
+&#x3C;/li&#x3E;
+
+&#x3C;li th:replace=&#x22;::menuItem (&#x27;/owners/find&#x27;,&#x27;owners&#x27;,&#x27;find owners&#x27;,&#x27;search&#x27;,&#x27;Find owners&#x27;)&#x22;&#x3E;
+  &#x3C;span class=&#x22;glyphicon glyphicon-search&#x22; aria-hidden=&#x22;true&#x22;&#x3E;&#x3C;/span&#x3E;
+  &#x3C;span&#x3E;Find owners&#x3C;/span&#x3E;
+&#x3C;/li&#x3E;
+
+&#x3C;li th:replace=&#x22;::menuItem (&#x27;/vets.html&#x27;,&#x27;vets&#x27;,&#x27;veterinarians&#x27;,&#x27;th-list&#x27;,&#x27;Veterinarians&#x27;)&#x22;&#x3E;
+  &#x3C;span class=&#x22;glyphicon glyphicon-th-list&#x22; aria-hidden=&#x22;true&#x22;&#x3E;&#x3C;/span&#x3E;
+  &#x3C;span&#x3E;Veterinarians&#x3C;/span&#x3E;
+&#x3C;/li&#x3E;
+
+&#x3C;li th:replace=&#x22;::menuItem (&#x27;/oups&#x27;,&#x27;error&#x27;,&#x27;trigger a RuntimeException to see how it is handled&#x27;,&#x27;warning-sign&#x27;,&#x27;Error&#x27;)&#x22;&#x3E;
+  &#x3C;span class=&#x22;glyphicon glyphicon-warning-sign&#x22; aria-hidden=&#x22;true&#x22;&#x3E;&#x3C;/span&#x3E;
+  &#x3C;span&#x3E;Error&#x3C;/span&#x3E;
+&#x3C;/li&#x3E;
+</code></pre>
+</body>
+</html>
