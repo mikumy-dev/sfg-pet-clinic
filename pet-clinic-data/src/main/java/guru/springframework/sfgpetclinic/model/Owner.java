@@ -6,11 +6,25 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
-@EqualsAndHashCode(exclude = {"pets"})
+@Setter
+@Getter
+@NoArgsConstructor
 @Entity
 @Table
 public class Owner extends Person {
+
+    @Builder
+    public Owner(Long id, String firstName, String lastName, String address, String city,
+                 String telephone, Set<Pet> pets) {
+        super(id, firstName, lastName);
+        this.address = address;
+        this.city = city;
+        this.telephone = telephone;
+
+        if(pets != null) {
+            this.pets = pets;
+        }
+    }
 
     @Column
     private String address;
@@ -22,3 +36,5 @@ public class Owner extends Person {
     private Set<Pet> pets = new HashSet<>();
 
 }
+
+
